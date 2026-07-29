@@ -1,112 +1,146 @@
 window.SITE_DATA = {
   profile: {
-    name: "Cheng Hangyu",
-    nameZh: "程航宇",
-    title: "Researcher in Control Engineering",
-    bio: "AI-enabled control and energy management for power electronic converters, microgrids, and hydrogen energy systems.",
-    location: "Hangzhou, China",
-    affiliation: "Zhejiang University of Technology",
-    email: "your-email@example.com",
-    avatar: "assets/images/avatar-placeholder.svg",
+    name: "Hangyu",
+    nameZh: "CC",
+    title: "Ph.D. Candidate in M.Eng",
+    bio: "Microgrid control with artificial intelligence.",
+    location: "Gwangju, South Korea",
+    affiliation: "Chonnam National University",
+    email: "hycnu@outlook.com",
+    avatar: "assets/images/leo.png",
     links: [
-      { label: "Email", url: "mailto:your-email@example.com", icon: "mail" },
-      { label: "Google Scholar", url: "#", icon: "scholar" },
-      { label: "ORCID", url: "#", icon: "orcid" },
-      { label: "GitHub", url: "#", icon: "github" }
+      { label: "Email", url: "mailto:hycnu@outlook.com", icon: "mail" },
+      { label: "GitHub", url: "https://github.com/hyepsl", icon: "github" }
     ]
   },
 
   news: [
-    { date: "2026-07", text: "Presented research on intelligent control for a green-hydrogen microgrid at WHEC 2026." },
-    { date: "2026-07", text: "Started research on MPC-to-policy learning for high-frequency Buck converter control." },
-    { date: "2026-06", text: "Completed edge-device deployment and HIL evaluation of a DDQN-based controller." }
+    { date: "2026-06", text: "Submitted a revised manuscript on real-time reinforcement-learning control for green hydrogen microgrids to Energy." },
+    { date: "2026", text: "Presented deep reinforcement learning-based real-time PI gain tuning at the 25th World Hydrogen Energy Conference in Singapore." },
+    { date: "2026", text: "Received the Chonnam National University Fellowship." }
   ],
 
-  research: [
+  education: [
     {
-      title: "AI for Power Electronics",
-      summary: "Reinforcement learning, policy learning, and neural-network deployment for fast control of DC/DC converters.",
-      keywords: ["DRL", "MPC imitation", "DC/DC converters", "Embedded inference"]
+      degree: "Ph.D. in Mechanical Engineering",
+      institution: "Chonnam National University, South Korea",
+      detail: " Advisors: Prof. Young-bae Kim and Prof. Seunghun Jung",
+      period: "Mar 2023 – Present"
     },
     {
-      title: "Intelligent Microgrid Control",
-      summary: "Control and energy management of microgrids integrating renewable generation, energy storage, and hydrogen systems.",
-      keywords: ["Microgrids", "Energy management", "Green hydrogen", "Intelligent dispatch"]
-    },
-    {
-      title: "Advanced Control and Disturbance Rejection",
-      summary: "Model-based and observer-based control under parameter uncertainty, nonlinearities, and external disturbances.",
-      keywords: ["MPC", "LQR", "ADRC", "Observers"]
-    }
-  ],
-
-  projects: [
-    {
-      id: "green-hydrogen-microgrid",
-      title: "Green Hydrogen Microgrid DC-Bus Control",
-      period: "2025–2026",
-      description: "A DDQN-assisted cascaded control framework for regulating the DC bus of a green-hydrogen microgrid, including HIL and edge-device evaluation.",
-      tags: ["DDQN", "PI control", "Microgrid", "HIL"],
-      highlights: [
-        "Online tuning of controller parameters using value-based deep reinforcement learning.",
-        "Comparison with conventional and optimization-based control baselines.",
-        "ONNX deployment and inference-time evaluation on an edge platform."
-      ]
-    },
-    {
-      id: "sst-disturbance-rejection",
-      title: "SST Rectifier Disturbance-Rejection Control",
-      period: "2026",
-      description: "Composite DC-link voltage control combining model reconstruction, disturbance estimation, LQR feedback, and feedforward compensation.",
-      tags: ["SST", "LQR", "Disturbance observer", "DC-link"],
-      highlights: [
-        "Model reconstruction for uncertain rectifier dynamics.",
-        "Equivalent-input-disturbance estimation and compensation.",
-        "Evaluation under load changes and external disturbances."
-      ]
-    },
-    {
-      id: "buck-mpc-policy",
-      title: "Buck Converter MPC and Policy Learning",
-      period: "2026–present",
-      description: "Direct duty-ratio control of a Buck converter using MPC, followed by policy-network learning for fast real-time implementation.",
-      tags: ["Buck", "MPC", "Imitation learning", "20 kHz"],
-      highlights: [
-        "State-space modeling with integral error augmentation.",
-        "Constrained predictive control using voltage-tracking objectives.",
-        "Exploration of neural policy inference at switching-control rates."
-      ]
-    },
-    {
-      id: "microgrid-dispatch",
-      title: "Forecast-Aware Microgrid Dispatch",
-      period: "Concept study",
-      description: "A hybrid MILP–DRL framework that improves power forecasting and corrects dispatch decisions affected by forecast errors.",
-      tags: ["MILP", "DRL", "Forecasting", "Energy scheduling"],
-      highlights: [
-        "Learning-based power-forecast refinement.",
-        "Decision correction for grid-purchase and energy-flow commands.",
-        "Joint evaluation of forecasting and dispatch performance."
-      ]
+      degree: "B.Eng. in Mechanical Engineering",
+      institution: "Wenzhou University, China",
+      detail: "Graduated with honors",
+      period: "Sep 2018 – Jun 2022"
     }
   ],
 
   publications: [
     {
       year: "2026",
-      title: "DDQN-assisted DC-bus voltage regulation for a green hydrogen microgrid",
-      authors: "Cheng Hangyu, et al.",
-      venue: "Conference presentation / manuscript information to be updated",
-      type: "Conference",
-      links: []
+      title: "Hierarchical model predictive control with multi-agent reinforcement learning for eco-driving of fuel cell hybrid electric vehicles",
+      authors: "S. Liu, J. Chen, H. Cheng, S. Jung, and Y. B. Kim",
+      venue: "International Journal of Hydrogen Energy, 216, 153914",
+      type: "Journal article"
     },
+
+
     {
       year: "2026",
-      title: "Disturbance-rejection voltage control for the rectifier stage of a solid-state transformer",
-      authors: "Cheng Hangyu, et al.",
-      venue: "Manuscript information to be updated",
-      type: "Manuscript",
-      links: []
+      title: "Deep Reinforcement Learning-Based Real-Time Gain Tuning of PI Controller for Green Hydrogen Microgrids",
+      authors: "H. Cheng and Y. B. Kim",
+      venue: "25th World Hydrogen Energy Conference, Singapore",
+      type: "Conference"
+    },
+    {
+      year: "2025",
+      title: "A novel reinforcement learning controller for the DC-DC boost converter",
+      authors: "H. Cheng, S. Jung, and Y. B. Kim",
+      venue: "Energy, 321, 135479",
+      type: "Journal article"
+    },
+    {
+      year: "2025",
+      title: "Parameter identification with hybrid reinforcement learning algorithm of proton exchange membrane electrolyzer",
+      authors: "H. Cheng, J. Chen, S. Liu, S. Jung, and Y. B. Kim",
+      venue: "International Journal of Hydrogen Energy, 174, 151187",
+      type: "Journal article"
+    },
+    {
+      year: "2025",
+      title: "Hierarchical rolling optimization strategy for hybrid electric-hydrogen system based on deep reinforcement learning",
+      authors: "H. Cheng, J. Chen, S. Jung, and Y. B. Kim",
+      venue: "Energy, 138952",
+      type: "Journal article"
+    },
+    {
+      year: "2025",
+      title: "Novel energy management strategy for fuel cell/battery hybrid energy systems combining MPC and deep reinforcement learning",
+      authors: "S. Liu, H. Cheng, S. Jung, and Y. B. Kim",
+      venue: "Energy Conversion and Management, 341, 120081",
+      type: "Journal article"
+    },
+    {
+      year: "2025",
+      title: "LSTM-Based Rolling Optimization for Integrated Power Systems",
+      authors: "H. Cheng and Y. B. Kim",
+      venue: "12th International Conference on Power and Energy Systems Engineering, Fukuoka, Japan",
+      type: "Conference"
+    },
+    {
+      year: "2024",
+      title: "Battery thermal management system optimization using Deep reinforced learning algorithm",
+      authors: "H. Cheng, S. Jung, and Y. B. Kim",
+      venue: "Applied Thermal Engineering, 236, 121759",
+      type: "Journal article"
+    },
+    {
+      year: "2024",
+      title: "Compensated Deep Reinforcement Learning Control of a Boost Converter",
+      authors: "H. Cheng and Y. B. Kim",
+      venue: "Third Asian Conference on Thermal Sciences, Shanghai, China",
+      type: "Conference"
+    }
+  ],
+
+  awards: [
+    { year: "2026", title: "Chonnam National University Fellowship", detail: "Ranked 2nd among 77 candidates" },
+    { year: "2025", title: "BK21 FOUR Outstanding Paper Award", detail: "Chonnam National University" },
+    { year: "2024", title: "BK21 FOUR Scholarship", detail: "Chonnam National University" },
+    { year: "2024", title: "Truth Scholarship", detail: "Chonnam National University" },
+    { year: "2024", title: "BK21 FOUR Outstanding Paper Award", detail: "Chonnam National University" },
+    { year: "2023", title: "Global Scholarship", detail: "Highest-level scholarship for international students" },
+    { year: "2023", title: "Truth Scholarship", detail: "Chonnam National University" },
+    { year: "2022", title: "Outstanding Graduate", detail: "Wenzhou University" },
+    { year: "2022", title: "Outstanding Student Leader", detail: "Wenzhou University" },
+    { year: "2020", title: "National Second Prize, University Student Mechanical Design Competition", detail: "China" },
+    { year: "2020", title: "Merit Student", detail: "Wenzhou University" },
+    { year: "2019–2021", title: "National Encouragement Scholarship", detail: "Three consecutive years" }
+  ],
+
+  academicService: [
+    { role: "Journal Reviewer", organization: "IEEE Transactions on Industrial Electronics" }
+  ],
+
+  skills: [
+    {
+      category: "Software and methods",
+      items: "MATLAB/Simulink, Python, PyTorch, energy-system modeling, advanced control, deep reinforcement learning, and data analysis"
+    },
+    {
+      category: "Experimental systems",
+      items: "Fuel cells, electrolyzers, energy storage, and DC/DC converter platform construction, commissioning, data acquisition, hardware-in-the-loop testing, and edge-device deployment"
+    }
+  ],
+
+  gallery: [
+    {
+      src: "assets/images/gallery/2024-first-snow.jpg",
+      title: "First Snow of 2024",
+      date: "2024-12-25",
+      location: "Gwangju, South Korea",
+      caption: "The first snow of 2024.",
+      alt: "Snow-covered trees, paths, and benches at Hallasan"
     }
   ],
 

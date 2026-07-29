@@ -21,8 +21,7 @@ assets/js/site-data.js
 
 - `profile`：姓名、简介、学校、邮箱、头像、学术链接
 - `news`：首页动态
-- `research`：研究方向
-- `projects`：项目经历
+- `gallery`：照片、日期、地点和文字记录
 - `publications`：论文成果
 
 博客文章不要再写入 `site-data.js`。

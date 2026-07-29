@@ -20,10 +20,9 @@
   function navHtml(active) {
     const items = [
       ["Home", "index.html", "home"],
-      ["Research", "research.html", "research"],
       ["Publications", "publications.html", "publications"],
-      ["Projects", "projects.html", "projects"],
       ["Blog", "blog.html", "blog"],
+      ["Gallery", "gallery.html", "gallery"],
       ["CV", "cv.html", "cv"]
     ];
     return `
@@ -42,7 +41,7 @@
     const p = data.profile;
     return `
       <aside class="profile-sidebar">
-        <img class="avatar" src="${p.avatar}" alt="Portrait placeholder for ${p.name}">
+        <img class="avatar" src="${p.avatar}" alt="Profile image for ${p.name}">
         <div class="profile-names">
           <h2>${p.name}</h2>
           <p class="name-zh">${p.nameZh}</p>
@@ -60,8 +59,7 @@
   function footerHtml() {
     return `
       <footer class="site-footer">
-        <p>© ${new Date().getFullYear()} ${data.profile.name}. Built as an independent static academic website.</p>
-        <p class="footer-small">Edit profile data in <code>assets/js/site-data.js</code> and blog posts in <code>posts/*.md</code>.</p>
+        <p>© ${new Date().getFullYear()} ${data.profile.name}. Academic profile and technical notes.</p>
       </footer>`;
   }
 
@@ -274,40 +272,22 @@
     return Math.max(1, Math.ceil(text.split(/\s+/).length / 210));
   }
 
-  function cardProject(project) {
-    return `
-      <article class="project-card">
-        <div class="card-kicker">${project.period}</div>
-        <h3><a href="projects.html#${project.id}">${project.title}</a></h3>
-        <p>${project.description}</p>
-        <div class="tag-list">${project.tags.map(t => `<span>${t}</span>`).join("")}</div>
-      </article>`;
-  }
-
   function renderHome() {
     const main = mountShell("home", "Home");
     const latest = [...data.posts].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
     main.innerHTML = `
       <section class="intro-section">
-        <p class="eyebrow">Academic profile · Technical blog</p>
-        <h1>About Me</h1>
-        <p class="lead">I work on intelligent control and energy management for power electronic converters, microgrids, and hydrogen-energy systems. My current interests connect model-based control, deep reinforcement learning, and real-time embedded deployment.</p>
+        <p class="eyebrow">Mechanical engineering · Intelligent energy systems</p>
+        <h1>Micro-grid with artificial intelligence.</h1>
+        <p class="lead">I am a Ph.D. candidate at CNU working on the renewable energy system and hybrid power system.</p>
+        <div class="profile-stats" aria-label="Academic profile summary">
+          <div><strong>6</strong><span>Published journal articles</span></div>
+          <div><strong>3</strong><span>Conference contributions</span></div>
+        </div>
         <div class="button-row">
-          <a class="button primary" href="projects.html">View projects</a>
-          <a class="button" href="blog.html">Read technical notes</a>
+          <a class="button primary" href="cv.html">View CV</a>
+          <a class="button" href="publications.html">View publications</a>
         </div>
-      </section>
-
-      <section class="content-section">
-        <div class="section-heading"><h2>Research Interests</h2><a href="research.html">View all</a></div>
-        <div class="research-grid">
-          ${data.research.map(item => `<article class="research-card"><h3>${item.title}</h3><p>${item.summary}</p></article>`).join("")}
-        </div>
-      </section>
-
-      <section class="content-section">
-        <div class="section-heading"><h2>Selected Projects</h2><a href="projects.html">View all</a></div>
-        <div class="project-grid">${data.projects.slice(0, 3).map(cardProject).join("")}</div>
       </section>
 
       <section class="content-section two-column-section">
@@ -322,41 +302,13 @@
       </section>`;
   }
 
-  function renderResearch() {
-    const main = mountShell("research", "Research");
-    main.innerHTML = `
-      <header class="page-header"><p class="eyebrow">Research</p><h1>Research Directions</h1><p class="lead">My research follows a continuous path from power-electronic modeling and advanced control to learning-based optimization and embedded implementation.</p></header>
-      <div class="research-detail-list">
-        ${data.research.map((item, index) => `
-          <section class="research-detail">
-            <div class="research-index">0${index + 1}</div>
-            <div><h2>${item.title}</h2><p>${item.summary}</p><div class="tag-list">${item.keywords.map(k => `<span>${k}</span>`).join("")}</div></div>
-          </section>`).join("")}
-      </div>
-      <section class="content-section">
-        <h2>Research Framework</h2>
-        <div class="framework-flow">
-          <span>System modeling</span><b>→</b><span>Advanced control</span><b>→</b><span>Learning-based optimization</span><b>→</b><span>HIL & embedded deployment</span>
-        </div>
-      </section>`;
-  }
-
   function renderPublications() {
     const main = mountShell("publications", "Publications");
     const grouped = groupBy(data.publications, p => p.year);
     const years = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
     main.innerHTML = `
-      <header class="page-header"><p class="eyebrow">Academic output</p><h1>Publications</h1><p class="lead">Replace the sample records below with confirmed bibliographic information, DOI links, PDF files, code, and BibTeX entries.</p></header>
+      <header class="page-header"><p class="eyebrow">Academic output</p><h1>Publications</h1><p class="lead">Journal articles, manuscripts under review, and international conference contributions in intelligent energy systems and advanced control.</p></header>
       ${years.map(year => `<section class="archive-year"><h2 class="year-title">${year}</h2>${grouped[year].map(p => `<article class="publication-item"><span class="pub-type">${p.type}</span><h3>${p.title}</h3><p class="authors">${p.authors}</p><p>${p.venue}</p></article>`).join("")}</section>`).join("")}`;
-  }
-
-  function renderProjects() {
-    const main = mountShell("projects", "Projects");
-    main.innerHTML = `
-      <header class="page-header"><p class="eyebrow">Research portfolio</p><h1>Projects</h1><p class="lead">Selected projects in intelligent power-electronic control, microgrids, hydrogen energy, and real-time implementation.</p></header>
-      <div class="project-detail-list">
-        ${data.projects.map(project => `<article id="${project.id}" class="project-detail"><div class="card-kicker">${project.period}</div><h2>${project.title}</h2><p class="project-description">${project.description}</p><div class="tag-list">${project.tags.map(t => `<span>${t}</span>`).join("")}</div><h3>Highlights</h3><ul>${project.highlights.map(h => `<li>${h}</li>`).join("")}</ul></article>`).join("")}
-      </div>`;
   }
 
   function archiveMarkup(posts) {
@@ -415,19 +367,77 @@
       </article>`;
   }
 
+  function renderGallery() {
+    const main = mountShell("gallery", "Gallery");
+    const photos = [...(data.gallery || [])].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    const groupedPhotos = groupBy(photos.map((photo, index) => ({ photo, index })), item => (item.photo.date || "").slice(0, 4) || "Undated");
+    const galleryYears = Object.keys(groupedPhotos).sort((a, b) => {
+      if (a === "Undated") return 1;
+      if (b === "Undated") return -1;
+      return b.localeCompare(a);
+    });
+    main.innerHTML = `
+      <header class="page-header"><p class="eyebrow">Photo journal</p><h1>Gallery</h1><p class="lead">A chronological visual record of conferences, academic life, travel, and memorable moments along the way.</p></header>
+      ${photos.length ? `
+        <div class="gallery-timeline">
+          ${galleryYears.map(year => `
+            <section class="gallery-year">
+              <div class="gallery-year-label"><span>${escapeHtml(year)}</span></div>
+              <div class="gallery-year-content">
+                <div class="gallery-grid">
+                  ${groupedPhotos[year].map(({ photo, index }) => `
+                    <article class="gallery-card">
+                      <button class="gallery-open" type="button" data-gallery-index="${index}" aria-label="View ${escapeHtml(photo.title || "photo")}">
+                        <img src="${escapeHtml(safeUrl(photo.src))}" alt="${escapeHtml(photo.alt || photo.title || "Gallery photo")}" loading="lazy">
+                      </button>
+                      <div class="gallery-caption">
+                        <h2>${escapeHtml(photo.title || "Untitled")}</h2>
+                        ${(photo.date || photo.location) ? `<p class="gallery-meta">${[photo.date, photo.location].filter(Boolean).map(escapeHtml).join(" · ")}</p>` : ""}
+                        ${photo.caption ? `<p>${escapeHtml(photo.caption)}</p>` : ""}
+                      </div>
+                    </article>`).join("")}
+                </div>
+              </div>
+            </section>`).join("")}
+        </div>
+        <dialog id="gallery-lightbox" class="gallery-lightbox" aria-label="Photo viewer">
+          <button class="gallery-close" type="button" aria-label="Close photo viewer">×</button>
+          <img alt="">
+          <div class="gallery-lightbox-caption"></div>
+        </dialog>` : `<div class="gallery-empty"><p class="eyebrow">Collection in progress</p><h2>Photos will appear here soon.</h2><p>This space is ready for conferences, academic milestones, travels, and everyday memories.</p></div>`}`;
+
+    if (!photos.length) return;
+    const dialog = document.getElementById("gallery-lightbox");
+    const lightboxImage = dialog.querySelector("img");
+    const lightboxCaption = dialog.querySelector(".gallery-lightbox-caption");
+    const closeDialog = () => dialog.close ? dialog.close() : dialog.removeAttribute("open");
+
+    document.querySelectorAll(".gallery-open").forEach(button => {
+      button.addEventListener("click", () => {
+        const photo = photos[Number(button.dataset.galleryIndex)];
+        lightboxImage.src = safeUrl(photo.src);
+        lightboxImage.alt = photo.alt || photo.title || "Gallery photo";
+        lightboxCaption.textContent = [photo.title, photo.date, photo.location].filter(Boolean).join(" · ");
+        dialog.showModal ? dialog.showModal() : dialog.setAttribute("open", "");
+      });
+    });
+    dialog.querySelector(".gallery-close").addEventListener("click", closeDialog);
+    dialog.addEventListener("click", event => { if (event.target === dialog) closeDialog(); });
+  }
+
   function renderCV() {
     const main = mountShell("cv", "CV");
     main.innerHTML = `
-      <header class="page-header cv-header"><div><p class="eyebrow">Curriculum vitae</p><h1>${data.profile.name}</h1><p class="lead">Control engineering · Intelligent power electronics · Microgrid control</p></div><button class="button" onclick="window.print()">Print / Save PDF</button></header>
+      <header class="page-header cv-header"><div><p class="eyebrow">Curriculum vitae</p><h1>${data.profile.name}</h1><p class="lead">Green hydrogen microgrids · Deep reinforcement learning control · Fuel-cell hybrid energy management</p><p class="cv-contact">${data.profile.affiliation} · ${data.profile.location} · <a href="mailto:${data.profile.email}">${data.profile.email}</a></p></div><button class="button" onclick="window.print()">Print / Save PDF</button></header>
       <section class="cv-section"><h2>Profile</h2><p>${data.profile.bio}</p></section>
-      <section class="cv-section"><h2>Education</h2><div class="cv-entry"><div><strong>Graduate study in Control Engineering</strong><p>${data.profile.affiliation}</p></div><time>Add dates</time></div></section>
-      <section class="cv-section"><h2>Research Experience</h2>${data.projects.slice(0, 3).map(p => `<div class="cv-entry"><div><strong>${p.title}</strong><p>${p.description}</p></div><time>${p.period}</time></div>`).join("")}</section>
-      <section class="cv-section"><h2>Research Interests</h2><p>${data.research.flatMap(r => r.keywords).join(" · ")}</p></section>
-      <section class="cv-section"><h2>Technical Skills</h2><p>MATLAB / Simulink · Python · Deep reinforcement learning · MPC · LQR · Power-electronic modeling · HIL · ONNX deployment · Embedded Linux</p></section>
-      <section class="cv-section"><h2>Publications and Presentations</h2>${data.publications.map(p => `<div class="cv-entry"><div><strong>${p.title}</strong><p>${p.authors}. ${p.venue}</p></div><time>${p.year}</time></div>`).join("")}</section>`;
+      <section class="cv-section"><h2>Education</h2>${data.education.map(item => `<div class="cv-entry"><div><strong>${item.degree}</strong><p>${item.institution}</p><p>${item.detail}</p></div><time>${item.period}</time></div>`).join("")}</section>
+      <section class="cv-section"><h2>Technical Skills</h2>${data.skills.map(skill => `<div class="cv-skill"><strong>${skill.category}</strong><p>${skill.items}</p></div>`).join("")}</section>
+      <section class="cv-section"><h2>Publications and Presentations</h2>${data.publications.map(p => `<div class="cv-entry cv-publication"><div><span class="pub-type">${p.type}</span><strong>${p.title}</strong><p>${p.authors}. ${p.venue}.</p></div><time>${p.year}</time></div>`).join("")}</section>
+      <section class="cv-section"><h2>Honors and Awards</h2><div class="award-grid">${data.awards.map(award => `<div class="award-item"><time>${award.year}</time><div><strong>${award.title}</strong><p>${award.detail}</p></div></div>`).join("")}</div></section>
+      <section class="cv-section"><h2>Academic Service</h2>${data.academicService.map(item => `<div class="cv-entry"><div><strong>${item.role}</strong><p>${item.organization}</p></div></div>`).join("")}</section>`;
   }
 
   const page = document.body.dataset.page;
-  const renderers = { home: renderHome, research: renderResearch, publications: renderPublications, projects: renderProjects, blog: renderBlog, post: renderPost, cv: renderCV };
+  const renderers = { home: renderHome, publications: renderPublications, blog: renderBlog, post: renderPost, gallery: renderGallery, cv: renderCV };
   (renderers[page] || renderHome)();
 })();
