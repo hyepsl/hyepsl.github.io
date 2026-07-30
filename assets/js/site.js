@@ -377,7 +377,7 @@
       return b.localeCompare(a);
     });
     main.innerHTML = `
-      <header class="page-header"><p class="eyebrow">Photo journal</p><h1>Gallery</h1><p class="lead">A chronological visual record of conferences, academic life, travel, and memorable moments along the way.</p></header>
+      <header class="page-header"><p class="eyebrow">Photo journal</p><h1>Gallery</h1><p class="lead">In memory some interesting moments.</p></header>
       ${photos.length ? `
         <div class="gallery-timeline">
           ${galleryYears.map(year => `

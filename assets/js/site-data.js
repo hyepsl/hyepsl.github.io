@@ -15,9 +15,9 @@ window.SITE_DATA = {
   },
 
   news: [
-    { date: "2026-06", text: "Submitted a revised manuscript on real-time reinforcement-learning control for green hydrogen microgrids to Energy." },
-    { date: "2026", text: "Presented deep reinforcement learning-based real-time PI gain tuning at the 25th World Hydrogen Energy Conference in Singapore." },
-    { date: "2026", text: "Received the Chonnam National University Fellowship." }
+    { date: "2026/06/25", text: "Submitted a revision." },
+    { date: "2026/06/22", text: "Participated the WHEC conference in Singapore." },
+    { date: "2026/02/01", text: "Received the Chonnam National University Fellowship." }
   ],
 
   education: [
@@ -141,6 +141,15 @@ window.SITE_DATA = {
       location: "Gwangju, South Korea",
       caption: "The first snow of 2024.",
       alt: "Snow-covered trees, paths, and benches at Hallasan"
+    },
+
+    {
+      src: "assets/images/gallery/2026-01-15.jpg",
+      title: "Prelimiary Presentation",
+      date: "2026-01-15",
+      location: "Gwangju, South Korea",
+      caption: "The first snow of 2024.",
+      alt: "Maybe I will be a good researcher.",
     }
   ],
 
