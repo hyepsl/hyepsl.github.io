@@ -144,7 +144,7 @@ window.SITE_DATA = {
     },
 
     {
-      src: "assets/images/gallery/2026-01-15.jpg",
+      src: "assets/images/gallery/2026-01-15.png",
       title: "Prelimiary Presentation",
       date: "2026-01-15",
       location: "Gwangju, South Korea",
