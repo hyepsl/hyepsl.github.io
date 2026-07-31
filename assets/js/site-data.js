@@ -148,9 +148,25 @@ window.SITE_DATA = {
       title: "Prelimiary Presentation",
       date: "2026-01-15",
       location: "Gwangju, South Korea",
-      caption: "The first snow of 2024.",
-      alt: "Maybe I will be a good researcher.",
-    }
+      caption: "It is my preliminary presentation.",
+      alt: "This day I am very happy.",
+    },
+    {
+      src: "assets/images/gallery/2026-07-31-1.jpg",
+      title: "Jangheung-gun Water festival",
+      date: "2026-07-31",
+      location: "Jangheung-gun, South Korea",
+      caption: "Wow, we droped into water.",
+      alt: "This day I am very happy.",
+    },
+    {
+      src: "assets/images/gallery/2026-07-31-2.png",
+      title: "Jangheung-gun Water festival",
+      date: "2026-07-31",
+      location: "Jangheung-gun, South Korea",
+      caption: "Damn, the water came into the boat.",
+      alt: "This day I am very happy.",
+    },    
   ],
 
   posts: window.BLOG_POSTS || []
