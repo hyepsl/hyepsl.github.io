@@ -169,7 +169,7 @@ window.SITE_DATA = {
     },
     {
       src: "assets/images/gallery/2025-9-6.jpg",
-      title: "The farewell parety of Brother WanGe and KunYang",
+      title: "The farewell party of Brother WanGe, KunYang, JIAHUI AND XIANFENG",
       date: "2025-09-06",
       location: "Gwangju, South Korea",
       caption: "Together with Brother WanGe and KunYang.",
