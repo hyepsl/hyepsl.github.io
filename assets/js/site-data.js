@@ -303,7 +303,23 @@ window.SITE_DATA = {
       location: "Kyushu, Japan",
       caption: "Kyushu trip for conference.",
       alt: "This day I am very happy.",
-    },              
+    },
+    {
+      src: "assets/images/gallery/2026-09-06-1.jpg",
+      title: "Weekend trip with LLL,ADDA and 91Xiaohu",
+      date: "2026-09-06",
+      location: "Damyang-gun, Korea",
+      caption: "Take a breath and I want woking at there",
+      alt: "This day I am very happy.",
+    },
+    {
+      src: "assets/images/gallery/2026-09-06-2.jpg",
+      title: "Juknokwon",
+      date: "2026-09-06",
+      location: "Damyang-gun, Korea",
+      caption: "So many bamboo.",
+      alt: "This day I am very happy.",
+    },               
   ],
 
   posts: window.BLOG_POSTS || []
