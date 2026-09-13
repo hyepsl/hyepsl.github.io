@@ -21,10 +21,17 @@ assets/js/site-data.js
 
 - `profile`：姓名、简介、学校、邮箱、头像、学术链接
 - `news`：首页动态
-- `gallery`：照片、日期、地点和文字记录
 - `publications`：论文成果
 
 博客文章不要再写入 `site-data.js`。
+
+Gallery 已独立到：
+
+```text
+assets/js/gallery-data.js
+```
+
+添加照片时，把图片放进 `assets/images/gallery/`，然后只在 `gallery-data.js` 中添加照片信息。
 
 ## 添加或修改 Markdown 博客
 
@@ -100,13 +107,13 @@ Build Markdown Blog
 python build_blog.py
 ```
 
-构建成功后会生成：
+构建成功后会生成一个很小的文章索引：
 
 ```text
-assets/js/blog-posts.js
+assets/js/blog-index.js
 ```
 
-不要手工修改这个生成文件。它会根据 `posts/*.md` 自动重建，并让博客按日期和年份归档。
+不要手工修改这个生成文件。它只包含标题、日期、摘要和 Markdown 路径；文章页会直接读取对应的 `posts/*.md` 正文。以后新增文章只需新建 Markdown 并运行构建，不需要把正文复制到 JavaScript。
 
 ## 预览网站
 
@@ -184,7 +191,7 @@ Markdown 中写：
 - Vercel
 - 普通 Web 服务器
 
-发布前必须确保已经运行过一次 `build_blog.py`，并把生成的 `assets/js/blog-posts.js` 一起上传。
+发布前必须确保已经运行过一次 `build_blog.py`，并把生成的 `assets/js/blog-index.js` 一起上传。Markdown 文件本身也必须一并上传。
 
 ## GitHub Pages 自动发布
 

@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 POSTS_DIR = ROOT / "posts"
-OUTPUT = ROOT / "assets" / "js" / "blog-posts.js"
+OUTPUT = ROOT / "assets" / "js" / "blog-index.js"
 
 
 def parse_front_matter(text: str, source: Path) -> tuple[dict[str, str], str]:
@@ -51,6 +51,12 @@ def plain_excerpt(markdown: str, length: int = 180) -> str:
     return text if len(text) <= length else text[: length - 1].rstrip() + "…"
 
 
+def reading_minutes(markdown: str) -> int:
+    text = re.sub(r"```.*?```", " ", markdown, flags=re.S)
+    words = re.findall(r"[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*|[\u4e00-\u9fff]", text)
+    return max(1, (len(words) + 209) // 210)
+
+
 def build() -> int:
     if not POSTS_DIR.exists():
         POSTS_DIR.mkdir(parents=True)
@@ -86,7 +92,7 @@ def build() -> int:
                 "date": date,
                 "category": category,
                 "excerpt": excerpt,
-                "content": body,
+                "readingMinutes": reading_minutes(body),
                 "source": f"posts/{path.name}",
             })
         except Exception as exc:
@@ -100,7 +106,7 @@ def build() -> int:
 
     records.sort(key=lambda item: item["date"], reverse=True)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    payload = "window.BLOG_POSTS = " + json.dumps(records, ensure_ascii=False, indent=2) + ";\n"
+    payload = "window.BLOG_INDEX = " + json.dumps(records, ensure_ascii=False, indent=2) + ";\n"
     OUTPUT.write_text(payload, encoding="utf-8")
     print(f"Built {len(records)} Markdown post(s) -> {OUTPUT.relative_to(ROOT)}")
     return 0

@@ -268,8 +268,22 @@
   }
 
   function readingTime(post) {
-    const text = post.content.replace(/```[\s\S]*?```/g, " ").replace(/[#>*_`~|$\\-]/g, " ").trim();
+    if (post.readingMinutes) return post.readingMinutes;
+    const text = (post.content || "").replace(/```[\s\S]*?```/g, " ").replace(/[#>*_`~|$\\-]/g, " ").trim();
     return Math.max(1, Math.ceil(text.split(/\s+/).length / 210));
+  }
+
+  function markdownBody(source) {
+    const normalized = String(source || "").replace(/\r\n?/g, "\n");
+    if (!normalized.startsWith("---\n")) return normalized;
+    const end = normalized.indexOf("\n---\n", 4);
+    return end < 0 ? normalized : normalized.slice(end + 5).trim();
+  }
+
+  async function loadPostContent(post) {
+    const response = await fetch(post.source, { cache: "no-cache" });
+    if (!response.ok) throw new Error(`Unable to load ${post.source} (${response.status})`);
+    return markdownBody(await response.text());
   }
 
   function renderHome() {
@@ -351,7 +365,7 @@
     });
   }
 
-  function renderPost() {
+  async function renderPost() {
     const params = new URLSearchParams(location.search);
     const slug = params.get("slug");
     const post = data.posts.find(p => p.slug === slug);
@@ -360,11 +374,20 @@
       main.innerHTML = `<header class="page-header"><h1>Post not found</h1><p>The requested article does not exist.</p><a class="button" href="blog.html">Back to blog</a></header>`;
       return;
     }
-    main.innerHTML = `
-      <article class="article-page">
-        <header class="article-header"><a class="back-link" href="blog.html">← Blog archive</a><p class="eyebrow">${post.category}</p><h1>${post.title}</h1><p class="post-meta">${readingTime(post)} min read · Published: ${formatDate(post.date)}</p></header>
-        <div class="article-body">${markdownToHtml(post.content)}</div>
-      </article>`;
+    main.innerHTML = `<div class="empty-state"><p>Loading article…</p></div>`;
+    try {
+      const content = await loadPostContent(post);
+      main.innerHTML = `
+        <article class="article-page">
+          <header class="article-header"><a class="back-link" href="blog.html">← Blog archive</a><p class="eyebrow">${post.category}</p><h1>${post.title}</h1><p class="post-meta">${readingTime(post)} min read · Published: ${formatDate(post.date)}</p></header>
+          <div class="article-body">${markdownToHtml(content)}</div>
+        </article>`;
+      const typeset = () => window.MathJax?.typesetPromise?.([main]);
+      if (!typeset()) window.addEventListener("load", typeset, { once: true });
+    } catch (error) {
+      console.error(error);
+      main.innerHTML = `<header class="page-header"><h1>Article could not be loaded</h1><p>Please preview this site through a local web server instead of opening the HTML file directly.</p><a class="button" href="blog.html">Back to blog</a></header>`;
+    }
   }
 
   function renderGallery() {

@@ -1,8 +1,8 @@
 # Adding photos to the Gallery
 
 1. Copy the photo into this folder.
-2. Open `assets/js/site-data.js`.
-3. Add an item inside the `gallery` list using this format:
+2. Open `assets/js/gallery-data.js`.
+3. Add an item inside `window.GALLERY_ITEMS` using this format:
 
 ```javascript
 {
