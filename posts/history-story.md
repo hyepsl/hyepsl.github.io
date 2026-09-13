@@ -2,7 +2,7 @@
 title: History information
 date: 2026-09-09
 category: History
-excerpt: This is just for study some story.
+excerpt: This is just for study some story and my thinking.
 slug: history-information
 ---
 
